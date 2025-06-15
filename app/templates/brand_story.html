@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Brand Story - Bon Vivant</title>
-</head>
-<body>
-    <header>
-        <h1>Our Brand Story</h1>
-    </header>
-    <main>
+{% extends "base.html" %}
+{% block content %}
         <section>
             <h2>Welcome to Bon Vivant</h2>
-            <p>At Bon Vivant, we believe that every fragrance tells a story. Our journey began with a passion for creating unique scents that evoke emotions and memories.</p>
-            <p>Each perfume is crafted with the finest ingredients, sourced from around the world, ensuring that every bottle is a masterpiece.</p>
-            <p>Join us as we explore the art of perfumery and the stories behind our beloved fragrances.</p>
+            <p>Scent doesn't need a label. If you love it, that's enough.</p>
+            <p>We're not guided by price tags or brand names. Every fragrance here is one we truly admire—scents we've lingered with, scents that moved us.</p>
+            <p>Unisex, ageless, fearless. We choose only the ones that speak, softly or boldly, to something real inside.</p>
+            <p>We believe perfume isn't just an accessory—it's an extension of the soul.</p>
+            <p>You don't need to know the notes. Just trust your instinct. Choose the one you'd spray again, and again.</p>
+            <p>This is our curated world of scent.</p>
+            <p>We're not here to sell you a perfume.</p>
+            <p>We're here to help you find who you want to be—today, or maybe tomorrow.</p>
         </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Bon Vivant. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+{% endblock %}
+
+

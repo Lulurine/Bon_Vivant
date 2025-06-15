@@ -22,23 +22,22 @@
         <!-- <section> -->
 {% extends "base.html" %}
 {% block content %}
-            <h2>Our Collection</h2>
-            <ul>
-                <!-- Example product item -->
-                <li>
-                    <a href="{{ url_for('product_detail', product_id=1) }}">
-                        <h3>Perfume Name 1</h3>
-                        <p>Description of Perfume 1</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url_for('product_detail', product_id=2) }}">
-                        <h3>Perfume Name 2</h3>
-                        <p>Description of Perfume 2</p>
-                    </a>
-                </li>
-                <!-- Add more products as needed -->
-            </ul>
+    <h2>{{collection_name}}</h2>
+    <ul style="list-style:none; padding:0;">
+        {% for product in products %}
+        <li style="margin-bottom:32px;">
+            <a href="{{ url_for('product_detail', product_id=product[0]) }}" style="margin-left:32px; display:block;">
+            <div style="display:flex; align-items:center; justify-content:space-between; background:#fff8; border-radius:18px; box-shadow:0 2px 8px #ccc3; padding:24px;">
+                <div style="display:flex; flex-direction:column; align-items:flex-start; flex:1;">
+                    <h3 style="margin:0 0 12px 0; font-size:1.5rem; color:#4d3a6d;">{{ product[1] }}</h3>
+                    <div style="font-size:1.1rem; color:#888; margin-top:auto;">{{ product[2] }}</div>
+                </div>
+                <img src="{{ product[3] }}" alt="{{ product[1] }} image" style="max-width:180px; max-height:180px; border-radius:12px; box-shadow:0 2px 8px #bbb;">
+            </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
         <!-- </section> -->
     <!-- </main> -->

@@ -70,7 +70,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            pointer-events: none;
+            pointer-events: auto;
         }
         .header-bar .logo-text {
             font-family: 'Times New Roman', Times, serif;
@@ -277,7 +277,9 @@
             </button>
         </div>
         <div class="header-center">
-            <span class="logo-text">Bon Vivant</span>
+            <a href="/" style="text-decoration:none;">
+                <span class="logo-text">Bon Vivant</span>
+            </a>
             <span class="logo-sub">TAIWAN</span>
         </div>
         <div class="header-right">
@@ -295,28 +297,15 @@
         <nav class="sidebar" id="sidebar">
             <h1>Bon Vivant</h1>
             <ul>
-                <li><a href="/products" class="active">全新上架</a></li>
+                <li><a href="/products" class="active">所有香水</a></li>
                 <li><a href="/hot">熱銷商品</a></li>
                 <li><a href="/men">男士香水</a></li>
                 <li><a href="/women">女士香水</a></li>
-                <li>
-                    <button onclick="toggleSubmenu()" id="gift-btn">送禮推薦</button>
-                    <ul class="submenu" id="gift-submenu">
-                        <li><a href="/gift/mother">母親節</a></li>
-                        <li><a href="/gift/father">父親節</a></li>
-                        <li><a href="/gift/dragonboat">端午節</a></li>
-                        <li><a href="/gift/valentine">情人節</a></li>
-                        <li><a href="/gift/christmas">聖誕節</a></li>
-                        <li><a href="/gift/newyear">新年禮</a></li>
-                    </ul>
-                </li>
-                <li><a href="/about">品牌故事 / 關於我們</a></li>
+                <!-- <li><a href="/brand_story">品牌故事 / 關於我們</a></li> -->
             </ul>
-            <div class="account-links">
-                <a href="{{ url_for('account') }}">會員帳號</a>
-                <a href="/wishlist">喜愛清單</a>
+            <!-- <div class="account-links">
                 <a href="/cart">購物袋</a>
-            </div>
+            </div> -->
         </nav>
         <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
         <main class="main-content">
