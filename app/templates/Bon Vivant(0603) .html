@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Bon Vivant | TAIWAN</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #f8f8f6;
+            margin: 0;
+            color: #222;
+        }
+
+        .bv-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 40px 16px 40px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fff;
+        }
+
+        .bv-header-left, .bv-header-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .bv-header-center {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bv-logo {
+            text-align: center;
+        }
+
+        .bv-logo-main {
+            font-size: 2.2rem;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            font-family: 'Times New Roman', Times, serif;
+            display: block;
+            line-height: 1.1;
+        }
+
+        .bv-logo-sub {
+            font-size: 0.73rem;
+            letter-spacing: 0.3em;
+            color: #888;
+            display: block;
+            margin-top: 2px;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+
+        .menu-btn, .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            margin: 0 8px;
+        }
+
+        .bv-main {
+            min-height: 60vh;
+        }
+    </style>
+</head>
+<body>
+    <header class="bv-header">
+        <div class="bv-header-left">
+            <button class="menu-btn" aria-label="開啟選單">
+                <span class="menu-icon">&#9776;</span>
+            </button>
+        </div>
+        <div class="bv-header-center">
+            <div class="bv-logo">
+                <span class="bv-logo-main">Bon Vivant</span>
+                <span class="bv-logo-sub">TAIWAN</span>
+            </div>
+        </div>
+        <div class="bv-header-right">
+            <button class="icon-btn" aria-label="搜尋">
+                <span class="search-icon">&#128269;</span>
+            </button>
+            <button class="icon-btn" aria-label="購物車">
+                <span class="cart-icon">&#128722;</span>
+            </button>
+        </div>
+    </header>
+    <main class="bv-main">
+        <!-- 無主視覺圖片，保持留白與簡約 -->
+    </main>
+</body>
+</html>

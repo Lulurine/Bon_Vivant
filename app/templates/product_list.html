@@ -1,0 +1,49 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Product List - Bon Vivant</title>
+</head>
+<body> -->
+    <!-- <header>
+        <h1>Available Perfumes</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('product_list') }}">Products</a></li>
+                <li><a href="{{ url_for('brand_story') }}">Brand Story</a></li>
+                <li><a href="{{ url_for('account') }}">Account</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <!-- <main> -->
+        <!-- <section> -->
+{% extends "base.html" %}
+{% block content %}
+            <h2>Our Collection</h2>
+            <ul>
+                <!-- Example product item -->
+                <li>
+                    <a href="{{ url_for('product_detail', product_id=1) }}">
+                        <h3>Perfume Name 1</h3>
+                        <p>Description of Perfume 1</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('product_detail', product_id=2) }}">
+                        <h3>Perfume Name 2</h3>
+                        <p>Description of Perfume 2</p>
+                    </a>
+                </li>
+                <!-- Add more products as needed -->
+            </ul>
+{% endblock %}
+        <!-- </section> -->
+    <!-- </main> -->
+    <!-- <footer>
+        <p>&copy; 2023 Bon Vivant. All rights reserved.</p>
+    </footer>
+</body>
+</html> -->

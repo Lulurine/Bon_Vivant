@@ -1,0 +1,27 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Product Detail</title>
+</head>
+<body>
+    <header>
+        <h1>Perfume Detail</h1>
+    </header>
+    <main> -->
+{% extends "base.html" %}
+{% block content %}
+    <section>
+        <h2>Product ID: {{ product_id }}</h2>
+        <!-- Here you can add more details about the product, such as name, description, price, etc. -->
+    </section>
+    <a href="{{ url_for('product_list') }}">Back to Product List</a>
+{% endblock %}
+    <!-- </main>
+    <footer>
+        <p>&copy; 2023 Bon Vivant. All rights reserved.</p>
+    </footer>
+</body>
+</html> -->

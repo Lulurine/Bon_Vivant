@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Bon Vivant 香氛選品</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Times New Roman 字體設定 -->
+    <style>
+        :root {
+            --morandi-blue: #bfcad6;
+            --morandi-purple: #c7b8d6;
+            --morandi-khaki: #e3dac9;
+            --morandi-pink: #e7c6c6;
+            --morandi-gray: #f5f6fa;
+            --text-main: #2d2d2d;
+            --sidebar-bg: rgba(255,255,255,0.55);
+            --sidebar-blur: 18px;
+            --sidebar-border: rgba(200,200,220,0.25);
+            --sidebar-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+            --sidebar-active: #d6dbe7;
+            --accent: #b8a4d6;
+            --accent-hover: #a18acb;
+        }
+        body {
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            background: linear-gradient(135deg, #e3dac9 0%, #c7b8d6 100%);
+            color: var(--text-main);
+            letter-spacing: 0.03em;
+        }
+        .header-bar {
+            width: 100%;
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid #ececec;
+            padding: 0;
+            height: 90px;
+            box-shadow: 0 2px 12px rgba(180,180,180,0.08);
+        }
+        .header-bar .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0 18px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            transition: background 0.2s;
+            border-radius: 50%;
+        }
+        .header-bar .icon-btn:hover {
+            background: var(--morandi-blue);
+        }
+        .header-bar .icon-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--accent);
+            transition: fill 0.2s;
+        }
+        .header-bar .icon-btn:hover svg {
+            fill: var(--accent-hover);
+        }
+        .header-bar .header-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .header-bar .logo-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.3rem;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+            color: #4d3a6d;
+            margin-bottom: 0;
+            text-shadow: 0 2px 8px rgba(200,200,220,0.12);
+        }
+        .header-bar .logo-sub {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.78rem;
+            color: #888;
+            letter-spacing: 0.18em;
+            margin-top: 2px;
+        }
+        .header-bar .header-left,
+        .header-bar .header-right {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .header-bar .header-left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+        }
+        .header-bar .header-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            position: fixed;
+            top: 90px;
+            left: 0;
+            width: 270px;
+            height: calc(100vh - 90px);
+            background: var(--sidebar-bg);
+            box-shadow: var(--sidebar-shadow);
+            border-right: 1.5px solid var(--sidebar-border);
+            display: none;
+            flex-direction: column;
+            gap: 28px;
+            z-index: 1001;
+            transition: all 0.25s cubic-bezier(.4,2,.6,1);
+            padding: 44px 0 44px 36px;
+            border-radius: 0 24px 24px 0;
+            backdrop-filter: blur(var(--sidebar-blur));
+        }
+        .sidebar.active {
+            display: flex;
+            animation: fadeInSidebar 0.25s;
+        }
+        @keyframes fadeInSidebar {
+            from { opacity: 0; transform: translateX(-40px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+        .sidebar h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 18px;
+            letter-spacing: 0.12em;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a,
+        .sidebar ul li button {
+            display: block;
+            width: 90%;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 1.08rem;
+            color: #4d3a6d;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: 'Times New Roman', Times, serif;
+            transition: background 0.18s, color 0.18s;
+            cursor: pointer;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+        }
+        .sidebar ul li a:hover,
+        .sidebar ul li button:hover {
+            background: var(--morandi-blue);
+            color: #222;
+        }
+        .sidebar ul li .active {
+            background: var(--accent);
+            color: #fff;
+        }
+        .submenu {
+            display: none;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+        .submenu.active {
+            display: block;
+            animation: fadeInSidebar 0.2s;
+        }
+        .account-links {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+        .account-links a {
+            color: #4d3a6d;
+            font-size: 1.02rem;
+            border-radius: 10px;
+            padding: 8px 16px;
+            transition: background 0.18s, color 0.18s;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .account-links a:hover {
+            background: var(--morandi-purple);
+            color: #fff;
+        }
+        .sidebar-backdrop {
+            display: none;
+            position: fixed;
+            top: 90px;
+            left: 0;
+            width: 100vw;
+            height: calc(100vh - 90px);
+            background: rgba(60, 60, 80, 0.18);
+            z-index: 1000;
+            transition: background 0.2s;
+            backdrop-filter: blur(2px);
+        }
+        .sidebar.active + .sidebar-backdrop {
+            display: block;
+        }
+        .main-content {
+            flex: 1;
+            padding: 0 48px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            margin-left: 0;
+        }
+        .banner {
+            width: 100%;
+            height: 340px;
+            background: linear-gradient(120deg, #e7c6c6 60%, #bfcad6 100%), url('/static/images/banner.jpg') center/cover no-repeat;
+            border-radius: 0 0 32px 32px;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(180,180,180,0.10);
+        }
+        .banner-text {
+            background: rgba(255,255,255,0.68);
+            padding: 32px 48px 24px 48px;
+            border-radius: 0 0 32px 0;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.1rem;
+            color: #4d4d4d;
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            box-shadow: 0 2px 12px rgba(180,180,180,0.08);
+        }
+        @media (max-width: 900px) {
+            .header-bar { height: 60px; }
+            .header-bar .logo-text { font-size: 1.3rem; }
+            .header-bar .logo-sub { font-size: 0.6rem; }
+            .header-bar .icon-btn svg { width: 22px; height: 22px; }
+            .sidebar, .sidebar-backdrop { top: 60px; height: calc(100vh - 60px); }
+            .sidebar { width: 80vw; min-width: 180px; max-width: 320px; border-radius: 0 18px 18px 0; padding: 28px 0 28px 18px;}
+            .main-content { padding: 0 8px; }
+            .banner { height: 180px; }
+            .banner-text { font-size: 1.1rem; padding: 16px 24px 12px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部導覽列 -->
+    <div class="header-bar">
+        <div class="header-left">
+            <button class="icon-btn" id="sidebar-toggle" aria-label="開啟選單">
+                <!-- 漢堡選單圖示 -->
+                <svg viewBox="0 0 32 32"><rect y="6" width="32" height="4" rx="2"/><rect y="14" width="32" height="4" rx="2"/><rect y="22" width="32" height="4" rx="2"/></svg>
+            </button>
+        </div>
+        <div class="header-center">
+            <span class="logo-text">Bon Vivant</span>
+            <span class="logo-sub">TAIWAN</span>
+        </div>
+        <div class="header-right">
+            <button class="icon-btn" aria-label="搜尋">
+                <!-- 搜尋圖示 -->
+                <svg viewBox="0 0 32 32"><circle cx="14" cy="14" r="10" stroke="#3a3a3a" stroke-width="2" fill="none"/><line x1="22" y1="22" x2="30" y2="30" stroke="#3a3a3a" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <button class="icon-btn" aria-label="購物車">
+                <!-- 購物車圖示 -->
+                <svg viewBox="0 0 32 32"><circle cx="12" cy="28" r="2"/><circle cx="24" cy="28" r="2"/><polyline points="2 4 6 4 10 24 26 24 30 8 8 8" fill="none" stroke="#3a3a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <h1>Bon Vivant</h1>
+            <ul>
+                <li><a href="/products" class="active">全新上架</a></li>
+                <li><a href="/hot">熱銷商品</a></li>
+                <li><a href="/men">男士香水</a></li>
+                <li><a href="/women">女士香水</a></li>
+                <li>
+                    <button onclick="toggleSubmenu()" id="gift-btn">送禮推薦</button>
+                    <ul class="submenu" id="gift-submenu">
+                        <li><a href="/gift/mother">母親節</a></li>
+                        <li><a href="/gift/father">父親節</a></li>
+                        <li><a href="/gift/dragonboat">端午節</a></li>
+                        <li><a href="/gift/valentine">情人節</a></li>
+                        <li><a href="/gift/christmas">聖誕節</a></li>
+                        <li><a href="/gift/newyear">新年禮</a></li>
+                    </ul>
+                </li>
+                <li><a href="/about">品牌故事 / 關於我們</a></li>
+            </ul>
+            <div class="account-links">
+                <a href="{{ url_for('account') }}">會員帳號</a>
+                <a href="/wishlist">喜愛清單</a>
+                <a href="/cart">購物袋</a>
+            </div>
+        </nav>
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+        <main class="main-content">
+            <!-- 首頁 Banner -->
+            <div class="banner">
+                <div class="banner-text">
+                    Bon Vivant<br>
+                    <span style="font-size:1.1rem;font-weight:400;">精選香氛，質感生活的起點</span>
+                </div>
+            </div>
+            <!-- 內容區塊 -->
+            {% block content %}
+            <!-- 這裡放各頁內容 -->
+            {% endblock %}
+        </main>
+    </div>
+    <script>
+        // 側欄開關
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            sidebarBackdrop.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+        });
+        sidebarBackdrop.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            sidebarBackdrop.style.display = 'none';
+        });
+        function toggleSubmenu() {
+            var submenu = document.getElementById('gift-submenu');
+            submenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
